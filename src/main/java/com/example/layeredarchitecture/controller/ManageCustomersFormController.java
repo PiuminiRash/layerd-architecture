@@ -238,7 +238,7 @@ public class ManageCustomersFormController {
                 return "C00-001";
             }
         } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, "Failed to generate a new id " + e.getMessage()).show();
+            new Alert(Alert.AlertType.ERROR, "Failed to generate a new Id " + e.getMessage()).show();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
