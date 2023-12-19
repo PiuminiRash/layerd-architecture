@@ -50,7 +50,6 @@ public class PlaceOrderFormController {
     private String orderId;
 
     public void initialize() throws SQLException, ClassNotFoundException {
-
         tblOrderDetails.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("code"));
         tblOrderDetails.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("description"));
         tblOrderDetails.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("qty"));
@@ -74,6 +73,7 @@ public class PlaceOrderFormController {
         orderId = generateNewOrderId();
         lblId.setText("Order ID: " + orderId);
         lblDate.setText(LocalDate.now().toString());
+
         btnPlaceOrder.setDisable(true);
         txtCustomerName.setFocusTraversable(false);
         txtCustomerName.setEditable(false);
@@ -110,7 +110,6 @@ public class PlaceOrderFormController {
                     } catch (SQLException e) {
                         new Alert(Alert.AlertType.ERROR, "Failed to find the customer " + newValue + "" + e).show();
                     }
-
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 } catch (ClassNotFoundException e) {
@@ -120,7 +119,6 @@ public class PlaceOrderFormController {
                 txtCustomerName.clear();
             }
         });
-
 
         cmbItemCode.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newItemCode) -> {
             txtQty.setEditable(newItemCode != null);
@@ -396,7 +394,6 @@ public class PlaceOrderFormController {
         return false;
     }
 
-
     public ItemDTO findItem(String code) {
         try {
             Connection connection = DBConnection.getDbConnection().getConnection();
@@ -412,6 +409,4 @@ public class PlaceOrderFormController {
         }
         return null;
     }
-
-
 }
